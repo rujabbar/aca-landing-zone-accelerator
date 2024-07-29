@@ -2,7 +2,7 @@
 # this repo. Unless a later match takes precedence,
 # @global-owner1 and @global-owner2 will be requested for
 # review when someone opens a pull request.
-*              @Azure/cae-dai-lza-aca-owners
+*              @rujabbar
 
 # Review of workflows and Devops
-.github/       @Azure/cae-dai-lza-aca-owners
+.github/       @rujabbar
