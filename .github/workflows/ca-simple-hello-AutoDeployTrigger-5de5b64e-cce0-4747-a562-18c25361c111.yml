@@ -39,7 +39,8 @@ jobs:
           registryPassword: ${{ secrets.CASIMPLEHELLO_REGISTRY_PASSWORD }}
           containerAppName: ca-simple-hello
           resourceGroup: wmata-aca-spoke-rg
-          imageToDeploy: cracalzaxthexwmataeus.azurecr.io/azuredocs/containerapps-helloworld:latest
+          imageToDeploy: nginx
+          # imageToDeploy: cracalzaxthexwmataeus.azurecr.io/azuredocs/containerapps-helloworld:latest
           _buildArgumentsKey_: |
             _buildArgumentsValues_
 
