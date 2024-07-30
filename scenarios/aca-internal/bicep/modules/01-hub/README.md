@@ -46,8 +46,8 @@ Since this walkthrough is expected to be deployed isolated from existing infrast
    az deployment sub create \
       -n acalza01-hub \
       -l $LOCATION \
-      -f 01-hub/deploy.hub.bicep \
-      -p 01-hub/deploy.hub.parameters.jsonc
+      -f 01-hub/deploy.hub2.bicep \
+      -p 01-hub/deploy.hub.parameters2.jsonc
    ```
 
 ## Next step

@@ -111,7 +111,7 @@ module applicationInsights '../../../../shared/bicep/app-insights.bicep' = if (e
 module containerAppsEnvironment '../../../../shared/bicep/aca-environment.bicep' = {
   name: take('containerAppsEnvironment-${uniqueString(resourceGroup().id)}', 64)
   params: {
-    name: naming.outputs.resourcesNames.containerAppsEnvironment
+    name: 'wmataacaenvname'
     location: location
     tags: tags
     diagnosticWorkspaceId: logAnalyticsWorkspaceId

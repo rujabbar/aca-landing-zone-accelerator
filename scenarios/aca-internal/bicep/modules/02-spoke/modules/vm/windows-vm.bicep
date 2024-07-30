@@ -7,7 +7,7 @@ targetScope = 'resourceGroup'
 param vmName string
 param vmSize string
 
-param vmWindowsOSVersion string = '2016-Datacenter'
+param vmWindowsOSVersion string = '2022-Datacenter'
 
 param vmVnetName string
 param vmSubnetName string
@@ -49,7 +49,7 @@ resource vmSubnet 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
 }
 
 resource vmNetworkInterface 'Microsoft.Network/networkInterfaces@2021-02-01' = {
-  name: vmNetworkInterfaceName
+  name: 'windowsjumpnics'
   location: location
   tags: tags
   properties: {
@@ -61,14 +61,28 @@ resource vmNetworkInterface 'Microsoft.Network/networkInterfaces@2021-02-01' = {
             id: vmSubnet.id
           }
           privateIPAllocationMethod: 'Dynamic'
+          publicIPAddress: {
+            id: publicIp.id
+          }
         }
       }
     ]
   }
 }
 
+resource publicIp 'Microsoft.Network/publicIPAddresses@2021-02-01' = {
+  name: 'jumpboxPublicIpAddrs'
+  location: location
+  sku: {
+    name: 'Standard'
+  }
+  properties: {
+    publicIPAllocationMethod: 'Static'
+  }
+}
+
 resource vm 'Microsoft.Compute/virtualMachines@2021-04-01' =  {
-  name: vmName
+  name: 'windows-jump-box'
   location: location
   tags: tags
   zones: [

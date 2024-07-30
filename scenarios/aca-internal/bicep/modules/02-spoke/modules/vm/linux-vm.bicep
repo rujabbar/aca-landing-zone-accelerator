@@ -85,9 +85,20 @@ resource vmNetworkInterface 'Microsoft.Network/networkInterfaces@2021-02-01' = {
             id: vmSubnet.id
           }
           privateIPAllocationMethod: 'Dynamic'
+          publicIPAddress: {
+            id: publicIp.id
+          }
         }
       }
     ]
+  }
+}
+
+resource publicIp 'Microsoft.Network/publicIPAddresses@2021-02-01' = {
+  name: 'myPublicIp'
+  location: location
+  properties: {
+    publicIPAllocationMethod: 'Dynamic'
   }
 }
 

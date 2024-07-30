@@ -35,6 +35,10 @@ By default, they are deployed to the spoke resource group.
     
    ```bash
    # [This takes about four minutes to run (if you add deployRedis=false).]
+RESOURCENAME_RESOURCEGROUP_SPOKE=wmataspoke
+RESOURCEID_VNET_HUB=/subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourceGroups/wmata-aca-hub-rg/providers/Microsoft.Network/virtualNetworks/vnet-wmata-eus-hub
+RESOURCEID_VNET_SPOKE=/subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourceGroups/wmata-aca-spoke-rg/providers/Microsoft.Network/virtualNetworks/vnet-aca-lza-wmata-eus-spoke
+
    az deployment group create \
       -n acalza01-dependencies \
       -g $RESOURCENAME_RESOURCEGROUP_SPOKE \

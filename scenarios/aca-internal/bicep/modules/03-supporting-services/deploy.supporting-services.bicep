@@ -30,14 +30,14 @@ param spokeVNetId string
 @description('The name of the existing subnet in the spoke virtual to which the private endpoint will be connected.')
 param spokePrivateEndpointSubnetName string
 
-@description('Deploy Redis cache premium SKU')
-param deployRedisCache bool
+// @description('Deploy Redis cache premium SKU')
+// param deployRedisCache bool
 
-@description('Deploy (or not) an Azure OpenAI account. ATTENTION: At the time of writing this, OpenAI is in preview and only available in limited regions: look here: https://learn.microsoft.com/azure/ai-services/openai/chatgpt-quickstart#prerequisites')
-param deployOpenAi bool
+// @description('Deploy (or not) an Azure OpenAI account. ATTENTION: At the time of writing this, OpenAI is in preview and only available in limited regions: look here: https://learn.microsoft.com/azure/ai-services/openai/chatgpt-quickstart#prerequisites')
+// param deployOpenAi bool
 
-@description('Deploy (or not) a model on the openAI Account. This is used only as a sample to show how to deploy a model on the OpenAI account.')
-param deployOpenAiGptModel bool = false
+// @description('Deploy (or not) a model on the openAI Account. This is used only as a sample to show how to deploy a model on the OpenAI account.')
+// param deployOpenAiGptModel bool = false
 
 @description('Optional. Resource ID of the diagnostic log analytics workspace. If left empty, no diagnostics settings will be defined.')
 param logAnalyticsWorkspaceId string = ''
@@ -64,14 +64,14 @@ module naming '../../../../shared/bicep/naming/naming.module.bicep' = {
 module containerRegistry 'modules/container-registry.module.bicep' = {
   name: 'containerRegistry-${uniqueString(resourceGroup().id)}'
   params: {
-    containerRegistryName: naming.outputs.resourcesNames.containerRegistry
+    containerRegistryName: 'uniquewmataacrname'
     location: location
     tags: tags
     spokeVNetId: spokeVNetId
     hubVNetId: hubVNetId
     spokePrivateEndpointSubnetName: spokePrivateEndpointSubnetName
-    containerRegistryPrivateEndpointName: naming.outputs.resourcesNames.containerRegistryPep
-    containerRegistryUserAssignedIdentityName: naming.outputs.resourcesNames.containerRegistryUserAssignedIdentity
+    containerRegistryPrivateEndpointName: 'wmata-acr-pep'
+    containerRegistryUserAssignedIdentityName: 'wmata-acr-identity'
     diagnosticWorkspaceId: logAnalyticsWorkspaceId
     deployZoneRedundantResources: deployZoneRedundantResources
   }
@@ -81,48 +81,48 @@ module containerRegistry 'modules/container-registry.module.bicep' = {
 module keyVault 'modules/key-vault.bicep' = {
   name: 'keyVault-${uniqueString(resourceGroup().id)}'
   params: {
-    keyVaultName: naming.outputs.resourcesNames.keyVault
+    keyVaultName: 'uniquewmatakvname'
     location: location
     tags: tags
     spokeVNetId: spokeVNetId
     hubVNetId: hubVNetId
     spokePrivateEndpointSubnetName: spokePrivateEndpointSubnetName
-    keyVaultPrivateEndpointName: naming.outputs.resourcesNames.keyVaultPep
+    keyVaultPrivateEndpointName: 'wmata-kv-pep'
     diagnosticWorkspaceId: logAnalyticsWorkspaceId
   }
 }
 
 
-module redisCache 'modules/redis-cache.bicep' = if (deployRedisCache) {
-  name: 'redisCache-${uniqueString(resourceGroup().id)}'
-  params: {
-    location: location
-    redisName: naming.outputs.resourcesNames.redisCache
-    logAnalyticsWsId: logAnalyticsWorkspaceId
-    keyVaultName: keyVault.outputs.keyVaultName
-    spokeVNetId: spokeVNetId
-    hubVNetId: hubVNetId
-    spokePrivateEndpointSubnetName: spokePrivateEndpointSubnetName
-    redisCachePrivateEndpointName: naming.outputs.resourcesNames.redisCachePep
-  }
-}
+// module redisCache 'modules/redis-cache.bicep' = if (deployRedisCache) {
+//   name: 'redisCache-${uniqueString(resourceGroup().id)}'
+//   params: {
+//     location: location
+//     redisName: naming.outputs.resourcesNames.redisCache
+//     logAnalyticsWsId: logAnalyticsWorkspaceId
+//     keyVaultName: keyVault.outputs.keyVaultName
+//     spokeVNetId: spokeVNetId
+//     hubVNetId: hubVNetId
+//     spokePrivateEndpointSubnetName: spokePrivateEndpointSubnetName
+//     redisCachePrivateEndpointName: naming.outputs.resourcesNames.redisCachePep
+//   }
+// }
 
 
-module openAi 'modules/open-ai.module.bicep'= if(deployOpenAi) {
-  name: take('openAiModule-Deployment', 64)
-  params: {
-    name: naming.outputs.resourcesNames.openAiAccount
-    deploymentName: naming.outputs.resourcesNames.openAiDeployment
-    location: location
-    tags: tags
-    vnetHubResourceId: hubVNetId
-    logAnalyticsWsId: logAnalyticsWorkspaceId
-    deployOpenAiGptModel: deployOpenAiGptModel
-    spokeVNetId: spokeVNetId
-    hubVNetId: hubVNetId
-    spokePrivateEndpointSubnetName: spokePrivateEndpointSubnetName
-  }
-}
+// module openAi 'modules/open-ai.module.bicep'= if(deployOpenAi) {
+//   name: take('openAiModule-Deployment', 64)
+//   params: {
+//     name: naming.outputs.resourcesNames.openAiAccount
+//     deploymentName: naming.outputs.resourcesNames.openAiDeployment
+//     location: location
+//     tags: tags
+//     vnetHubResourceId: hubVNetId
+//     logAnalyticsWsId: logAnalyticsWorkspaceId
+//     deployOpenAiGptModel: deployOpenAiGptModel
+//     spokeVNetId: spokeVNetId
+//     hubVNetId: hubVNetId
+//     spokePrivateEndpointSubnetName: spokePrivateEndpointSubnetName
+//   }
+// }
 
 // ------------------
 // OUTPUTS
@@ -146,8 +146,8 @@ output keyVaultId string = keyVault.outputs.keyVaultId
 @description('The name of the Azure Key Vault.')
 output keyVaultName string = keyVault.outputs.keyVaultName
 
-@description('The secret name to retrieve the connection string from KeyVault')
-output redisCacheSecretKey string = (deployRedisCache)? redisCache.outputs.redisCacheSecretKey : ''
+// @description('The secret name to retrieve the connection string from KeyVault')
+// output redisCacheSecretKey string = (deployRedisCache)? redisCache.outputs.redisCacheSecretKey : ''
 
-@description('The name of the Azure Open AI account name.')
-output openAIAccountName string = (deployOpenAi)? openAi.outputs.name : ''
+// @description('The name of the Azure Open AI account name.')
+// output openAIAccountName string = (deployOpenAi)? openAi.outputs.name : ''
