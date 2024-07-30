@@ -35,8 +35,8 @@ jobs:
         uses: azure/container-apps-deploy-action@v2
         with:
           registryUrl: cracalzaxthexwmataeus.azurecr.io
-          registryUsername: ${{ secrets.CASIMPLEHELLO_REGISTRY_USERNAME }}
-          registryPassword: ${{ secrets.CASIMPLEHELLO_REGISTRY_PASSWORD }}
+          registryUsername: cracalzaxthexwmataeus
+          registryPassword: t00bqsq3Dxul34STJqWf9SqqKNDNGFJ/uqdkRF7kan+ACRBXlBW3
           containerAppName: ca-simple-hello
           resourceGroup: wmata-aca-spoke-rg
           imageToDeploy: nginx
