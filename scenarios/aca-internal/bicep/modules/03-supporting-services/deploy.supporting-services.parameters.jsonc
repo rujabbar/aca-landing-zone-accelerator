@@ -14,9 +14,9 @@
         "value": {}
     },
     // if true Azure Cache for Redis (Premium SKU), together with Private Endpoint and the relavant Private DNS Zone will be deployed
-    // "deployRedisCache": {
-    //   "value": false
-    // },
+    "deployRedisCache": {
+      "value": false
+    },
     // Replace with the resource ID of the spoke virtual network 
     "spokeVNetId": {
         "value": "<SPOKE_VNET_RESOURCE_ID>"
@@ -33,8 +33,8 @@
       "value": "snet-pep"
     },
     // Deploy (or not) an Azure OpenAI account. ATTENTION: At the time of writing , OpenAI is in preview and only available in limited regions: look here: https://learn.microsoft.com/azure/ai-services/openai/chatgpt-quickstart#prerequisites
-    // "deployOpenAi": {
-    //   "value": true
-    // }
+    "deployOpenAi": {
+      "value": false
+    }
   }
 }

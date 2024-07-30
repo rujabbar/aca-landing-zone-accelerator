@@ -36,16 +36,11 @@ export MSYS_NO_PATHCONV=1
 
    ```bash
    # [This takes about two minutes to run.]
-   <!-- az deployment sub create \
-      -n acalza01-spokenetwork \
-      -l $LOCATION \
-      -f 02-spoke/deploy.spoke.bicep -p 02-spoke/deploy.spoke.parameters.jsonc \
-      -p hubVNetId=${RESOURCEID_VNET_HUB} -->
-
 az deployment sub create \
    -n acalza01-spoken \
    -l $LOCATION \
    -f 02-spoke/deploy.spoke2.bicep -p 02-spoke/deploy.spoke.parameters2.jsonc 
+    -p hubVNetId=${RESOURCEID_VNET_HUB}
    ```
 
 1. Explore your networking resources. *Optional.*

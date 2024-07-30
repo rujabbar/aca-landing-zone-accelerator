@@ -120,6 +120,14 @@ module containerAppsEnvironment '../../../../shared/bicep/aca-environment.bicep'
     appInsightsInstrumentationKey: (enableApplicationInsights && enableDaprInstrumentation) ? applicationInsights.outputs.appInsInstrumentationKey : ''
     zoneRedundant: deployZoneRedundantResources
     infrastructureResourceGroupName: ''
+    // workloadProfiles: [
+    //   {
+    //     name: 'default'
+    //     sku: 'Standard'
+    //     capacity: 1
+    //     tier: 'Standard'
+    //   }
+    // ]
   }
 }
 
