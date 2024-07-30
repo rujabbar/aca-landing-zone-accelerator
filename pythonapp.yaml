@@ -1,0 +1,60 @@
+identity:
+  type: UserAssigned
+  userAssignedIdentities:
+    ? /subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourcegroups/wmataspokeaca/providers/Microsoft.ManagedIdentity/userAssignedIdentities/wmata-acr-identity
+    : clientId: 13d01eb1-8e13-4484-aded-42630b71f227
+      principalId: 83f80708-6365-4f4e-b576-d5fc98249c1a
+location: eastus
+name: python-app-again
+properties:
+  configuration:
+    activeRevisionsMode: Single
+    dapr: null
+    ingress:
+      additionalPortMappings: null
+      allowInsecure: false
+      clientCertificateMode: null
+      corsPolicy: null
+      customDomains: null
+      exposedPort: 0
+      external: false
+      ipSecurityRestrictions: null
+      stickySessions:
+        affinity: none
+      targetPort: 80
+      traffic:
+      - latestRevision: true
+        weight: 100
+      transport: Auto
+    maxInactiveRevisions: 100
+    # registries:
+    # - identity: ''
+    #   passwordSecretRef: reg-pswd-20fcb7c4-9542
+    #   server: uniquewmataacrname.azurecr.io
+    #   username: uniquewmataacrname
+    service: null
+  delegatedIdentities: []
+  environmentId: /subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourceGroups/wmataspoke2/providers/Microsoft.App/managedEnvironments/wmataacaenvname
+  managedEnvironmentId: /subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourceGroups/wmataspoke2/providers/Microsoft.App/managedEnvironments/wmataacaenvname
+  outboundIpAddresses: null
+  template:
+    containers:
+    - image: uniquewmataacrname.azurecr.io/pythonapp:latest
+      name: python-app-again
+      resources:
+        cpu: 0.5
+        ephemeralStorage: 2Gi
+        memory: 1Gi
+    initContainers: null
+    revisionSuffix: ''
+    scale:
+      maxReplicas: 2
+      minReplicas: 0
+      rules: null
+    serviceBinds: null
+    terminationGracePeriodSeconds: null
+    volumes: null
+  workloadProfileName: Consumption
+resourceGroup: wmataspoke2
+type: Microsoft.App/containerApps
+
