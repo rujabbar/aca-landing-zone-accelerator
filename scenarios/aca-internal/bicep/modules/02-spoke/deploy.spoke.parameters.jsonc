@@ -12,14 +12,14 @@
     },
     // // optional. If empty automatic name will be generated. To override, please give name of spoke resource group name
     "spokeResourceGroupName": {
-      "value": "wmataspoke2"
+      "value": ""
     },
     "tags": {
         "value": {}
     },
     // Replace with the resource ID of the hub virtual network 
     "hubVNetId": {
-        "value": "/subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourceGroups/wmatahub2/providers/Microsoft.Network/virtualNetworks/vnet-dev-eus-hub"
+        "value": "<HUB_VNET_RESOURCE_ID>"
     },
     "spokeVNetAddressPrefixes": {
       "value":  ["10.1.0.0/16"]
@@ -34,7 +34,7 @@
       "value":  ""
     },
     // "networkApplianceIpAddress": {
-    //   "value": "10.0.0.0" // random ip used for testing
+    //   "value": "[IP OF THE NETWORK APPLIANCE]"
     // },
     "vmSize": {
       "value": "Standard_B2ms"
@@ -46,6 +46,7 @@
       "value": "Password123"
     },
     "vmLinuxSshAuthorizedKeys": {
+      // use a valid ssh key below. below is just a placeholder to help you understand the format
       "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDpNpoh248rsraL3uejAwKlla+pHaDLbp4DM7bKFoc3Rt1DeXPs0XTutJcNtq4iRq+ooRQ1T7WaK42MfQQxt3qkXwjyv8lPJ4v7aElWkAbxZIRYVYmQVxxwfw+zyB1rFdaCQD/kISg/zXxCWw+gdds4rEy7eq23/bXFM0l7pNvbAULIB6ZY7MRpC304lIAJusuZC59iwvjT3dWsDNWifA1SJtgr39yaxB9Fb01UdacwJNuvfGC35GNYH0VJ56c+iCFeAnMXIT00cYuHf0FCRTP0WvTKl+PQmeD1pwxefdFvKCVpidU2hOARb4ooapT0SDM1SODqjaZ/qwWP18y/qQ/v imported-openssh-key"
     },
     "vmJumpboxOSType": {
