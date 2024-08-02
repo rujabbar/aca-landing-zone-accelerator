@@ -27,10 +27,10 @@ properties:
         weight: 100
       transport: Auto
     maxInactiveRevisions: 100
-    # registries:
-    # - identity: ''
+    registries:
+    - identity: '/subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourcegroups/wmataspokeaca/providers/Microsoft.ManagedIdentity/userAssignedIdentities/wmata-acr-identity'
+      server: uniquewmataacrname.azurecr.io
     #   passwordSecretRef: reg-pswd-20fcb7c4-9542
-    #   server: uniquewmataacrname.azurecr.io
     #   username: uniquewmataacrname
     service: null
   delegatedIdentities: []
