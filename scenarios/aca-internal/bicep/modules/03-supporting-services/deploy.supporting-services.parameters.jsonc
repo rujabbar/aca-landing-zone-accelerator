@@ -21,11 +21,13 @@
     "spokeVNetId": {
         "value": "<SPOKE_VNET_RESOURCE_ID>"
     },
-    // Optional. Resource ID of the diagnostic log analytics workspace. If left empty, no diagnostics settings will be defined. 
+    // Optional. Resource ID of the diagnostic log analytics workspace. If left empty, no diagnostics settings will be defined for your supporting services like keyvault. 
+    // Log analytics workspace is required for ACA however deployed in the next step so you might want to consider configuring it for these other services as well
     "logAnalyticsWorkspaceId": {
       "value": ""
     },
     // Replace with the resource ID of the hub virtual network - required to link the privateDNS zone to the Hub network as well 
+    // if you are using only 1 virtual network, you can use the same value as spokeVNetId.
     "hubVNetId": {
       "value": "<HUB_VNET_RESOURCE_ID>"
     },

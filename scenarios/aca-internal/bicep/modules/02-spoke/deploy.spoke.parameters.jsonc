@@ -12,29 +12,29 @@
     },
     // // optional. If empty automatic name will be generated. To override, please give name of spoke resource group name
     "spokeResourceGroupName": {
-      "value": "wmataspoke"
+      "value": "wmataspoke2"
     },
-    // "tags": {
-    //     "value": {}
-    // },
+    "tags": {
+        "value": {}
+    },
     // Replace with the resource ID of the hub virtual network 
-    // "hubVNetId": {
-    //     "value": "<HUB_VNET_RESOURCE_ID>"
-    // },
-    // "spokeVNetAddressPrefixes": {
-    //   "value":  ["10.1.0.0/22"]
-    // },
-    // "spokeInfraSubnetAddressPrefix": {
-    //   "value":  "10.1.0.0/23"
-    // },
-    // "spokePrivateEndpointsSubnetAddressPrefix": {
-    //   "value":  "10.1.2.0/27"
-    // },
-    // "spokeApplicationGatewaySubnetAddressPrefix": {
-    //   "value":  "10.1.3.0/24"
-    // },
+    "hubVNetId": {
+        "value": "/subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourceGroups/wmatahub2/providers/Microsoft.Network/virtualNetworks/vnet-dev-eus-hub"
+    },
+    "spokeVNetAddressPrefixes": {
+      "value":  ["10.1.0.0/16"]
+    },
+    "spokeInfraSubnetAddressPrefix": {
+      "value":  "10.1.0.0/23"
+    },
+    "spokePrivateEndpointsSubnetAddressPrefix": {
+      "value":  "10.1.2.0/27"
+    },
+    "spokeApplicationGatewaySubnetAddressPrefix": {
+      "value":  ""
+    },
     // "networkApplianceIpAddress": {
-    //   "value": "[IP OF THE NETWORK APPLIANCE]"
+    //   "value": "10.0.0.0" // random ip used for testing
     // },
     "vmSize": {
       "value": "Standard_B2ms"
@@ -45,21 +45,18 @@
     "vmAdminPassword": {
       "value": "Password123"
     },
-    // "vmLinuxSshAuthorizedKeys": {
-    //   "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDpNpoh248rsraL3uejAwKlla+pHaDLbp4DM7bKFoc3Rt1DeXPs0XTutJcNtq4iRq+ooRQ1T7WaK42MfQQxt3qkXwjyv8lPJ4v7aElWkAbxZIRYVYmQVxxwfw+zyB1rFdaCQD/kISg/zXxCWw+gdds4rEy7eq23/bXFM0l7pNvbAULIB6ZY7MRpC304lIAJusuZC59iwvjT3dWsDNWifA1SJtgr39yaxB9Fb01UdacwJNuvfGC35GNYH0VJ56c+iCFeAnMXIT00cYuHf0FCRTP0WvTKl+PQmeD1pwxefdFvKCVpidU2hOARb4ooapT0SDM1SODqjaZ/qwWP18y/qQ/v imported-openssh-key"
-    // },
+    "vmLinuxSshAuthorizedKeys": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDpNpoh248rsraL3uejAwKlla+pHaDLbp4DM7bKFoc3Rt1DeXPs0XTutJcNtq4iRq+ooRQ1T7WaK42MfQQxt3qkXwjyv8lPJ4v7aElWkAbxZIRYVYmQVxxwfw+zyB1rFdaCQD/kISg/zXxCWw+gdds4rEy7eq23/bXFM0l7pNvbAULIB6ZY7MRpC304lIAJusuZC59iwvjT3dWsDNWifA1SJtgr39yaxB9Fb01UdacwJNuvfGC35GNYH0VJ56c+iCFeAnMXIT00cYuHf0FCRTP0WvTKl+PQmeD1pwxefdFvKCVpidU2hOARb4ooapT0SDM1SODqjaZ/qwWP18y/qQ/v imported-openssh-key"
+    },
     "vmJumpboxOSType": {
       "value": "windows"
     },
-    // "vmJumpBoxSubnetAddressPrefix": {
-    //   "value": "10.1.2.32/27"
-    // },
+    "vmJumpBoxSubnetAddressPrefix": {
+      "value": "10.1.2.32/27"
+    },
     //If true, Azure Policies will be deployed
     "deployAzurePolicies": {
       "value": true
-    },
-    "vmSubnetId": {
-      "value": "/subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourceGroups/wmata-aca-spoke-rg/providers/Microsoft.Network/virtualNetworks/vnet-aca-lza-wmata-eus-spoke/subnets/snet-jumpbox"
     }
   }
 }
