@@ -20,7 +20,7 @@ param location string = resourceGroup().location
 param tags object = {}
 
 // Hub
-@description('The resource ID of the existing hub virtual network.')
+@description('The resource ID of the existing hub virtual network. Use the same value as spoke if you are only using 1 vnet without a hub')
 param hubVNetId string
 
 // Spoke
@@ -49,7 +49,6 @@ param deployZoneRedundantResources bool = true
 // RESOURCES
 // ------------------
 
-
 @description('User-configured naming rules')
 module naming '../../../../shared/bicep/naming/naming.module.bicep' = {
   name: take('03-sharedNamingDeployment-${deployment().name}', 64)
@@ -65,14 +64,14 @@ module naming '../../../../shared/bicep/naming/naming.module.bicep' = {
 module containerRegistry 'modules/container-registry.module.bicep' = {
   name: 'containerRegistry-${uniqueString(resourceGroup().id)}'
   params: {
-    containerRegistryName: 'uniquewmataacrname'
+    containerRegistryName: naming.outputs.resourcesNames.containerRegistry
     location: location
     tags: tags
     spokeVNetId: spokeVNetId
     hubVNetId: hubVNetId
     spokePrivateEndpointSubnetName: spokePrivateEndpointSubnetName
-    containerRegistryPrivateEndpointName: 'wmata-acr-pep'
-    containerRegistryUserAssignedIdentityName: 'wmata-acr-identity'
+    containerRegistryPrivateEndpointName: naming.outputs.resourcesNames.containerRegistryPep
+    containerRegistryUserAssignedIdentityName: naming.outputs.resourcesNames.containerRegistryUserAssignedIdentity
     diagnosticWorkspaceId: logAnalyticsWorkspaceId
     deployZoneRedundantResources: deployZoneRedundantResources
   }
@@ -82,13 +81,13 @@ module containerRegistry 'modules/container-registry.module.bicep' = {
 module keyVault 'modules/key-vault.bicep' = {
   name: 'keyVault-${uniqueString(resourceGroup().id)}'
   params: {
-    keyVaultName: 'uniquewmatakvname'
+    keyVaultName: naming.outputs.resourcesNames.keyVault
     location: location
     tags: tags
     spokeVNetId: spokeVNetId
     hubVNetId: hubVNetId
     spokePrivateEndpointSubnetName: spokePrivateEndpointSubnetName
-    keyVaultPrivateEndpointName: 'wmata-kv-pep'
+    keyVaultPrivateEndpointName: naming.outputs.resourcesNames.keyVaultPep
     diagnosticWorkspaceId: logAnalyticsWorkspaceId
   }
 }

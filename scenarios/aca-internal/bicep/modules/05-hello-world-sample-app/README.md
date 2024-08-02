@@ -31,6 +31,11 @@ Public container registries are subject to faults such as outages or request thr
    echo RESOURCEID_IDENTITY_ACR: $RESOURCEID_IDENTITY_ACR && \
    echo RESOURCEID_ACA: $RESOURCEID_ACA
    ```
+
+1. Build a sample image using the jumpbox or a computer that has access to the private network. If using a jumpbox, you will need a linux one and install docker into it, then run docker build on your application code and docker push to your container registry. Then Update your deploy.hello-world.parameters.jsonc file with the required information. We have provided a sample app in the sample_app_code folder with its docker file.
+1. Note: The az acr build command wont work here unless you configure a [dedicated agent pool within your vnet to run tasks](https://learn.microsoft.com/en-us/azure/container-registry/tasks-agent-pools)
+
+
    ```bash
    # [This takes about one minute to run.] 
    az deployment group create \
@@ -42,5 +47,7 @@ Public container registries are subject to faults such as outages or request thr
    ```
 
 ## Next step
+
+You can stop here or proceed to next step if you want to use app gateway to expose the app externally.. **This will require you have a app gateway subnet.**
 
 :arrow_forward: [Expose the workload through Application Gateway](../06-application-gateway/README.md)

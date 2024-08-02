@@ -111,7 +111,7 @@ module applicationInsights '../../../../shared/bicep/app-insights.bicep' = if (e
 module containerAppsEnvironment '../../../../shared/bicep/aca-environment.bicep' = {
   name: take('containerAppsEnvironment-${uniqueString(resourceGroup().id)}', 64)
   params: {
-    name: 'wmataacaenvname'
+    name: naming.outputs.resourcesNames.containerAppsEnvironment
     location: location
     tags: tags
     diagnosticWorkspaceId: logAnalyticsWorkspaceId
@@ -120,14 +120,28 @@ module containerAppsEnvironment '../../../../shared/bicep/aca-environment.bicep'
     appInsightsInstrumentationKey: (enableApplicationInsights && enableDaprInstrumentation) ? applicationInsights.outputs.appInsInstrumentationKey : ''
     zoneRedundant: deployZoneRedundantResources
     infrastructureResourceGroupName: ''
-    // workloadProfiles: [
-    //   {
-    //     name: 'default'
-    //     sku: 'Standard'
-    //     capacity: 1
-    //     tier: 'Standard'
-    //   }
-    // ]
+    workloadProfiles: [
+      {
+        name: 'default'
+        sku: 'Dedicated'
+        capacity: 1
+        tier: 'Standard' // use Standard for dev and test, Premium for prod
+        autoscale: {
+          minReplicas: 1 // minimum numebr of underlying vm instances
+          maxReplicas: 4 // maximum number. increase this if your demand goes up
+          rules: [
+            {
+              name: 'cpu-scaling'
+              type: 'cpu'
+              metadata: {
+                type: 'Utilization'
+                value: '70' // 70% CPU utilization will trigger the scaling
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
 }
 

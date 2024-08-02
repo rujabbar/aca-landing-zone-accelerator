@@ -28,6 +28,7 @@ export MSYS_NO_PATHCONV=1
 :warning: You will need to get the IP address of your Azure firewall or whatever network appliance you are using and replace the `[IP OF THE NETWORK APPLIANCE] placeholder in the deploy.spoke.paramters.jsonc file with it.
 
 1. Create the regional spoke network.
+   If these queries below dont work, just set the env variables by looking up the values in the portal. Run the echo commands to make sure they are set properly
 
    ```bash
    RESOURCEID_VNET_HUB=$(az deployment sub show -n acalza01-hub --query properties.outputs.hubVNetId.value -o tsv)
@@ -39,7 +40,7 @@ export MSYS_NO_PATHCONV=1
 az deployment sub create \
    -n acalza01-spoken \
    -l $LOCATION \
-   -f 02-spoke/deploy.spoke2.bicep -p 02-spoke/deploy.spoke.parameters2.jsonc 
+   -f 02-spoke/deploy.spoke.bicep -p 02-spoke/deploy.spoke.parameters.jsonc 
     -p hubVNetId=${RESOURCEID_VNET_HUB}
    ```
 

@@ -21,6 +21,12 @@ param containerRegistryUserAssignedIdentityId string
 @description('The resource ID of the existing Container Apps environment in which the Container App will be deployed.')
 param containerAppsEnvironmentId string
 
+@description('Name of the container image to be used for the Container App.')
+param containerImageName string
+
+@description('The name of the existing Azure Container Registry.')
+param registryServerName string
+
 // ------------------
 // RESOURCES
 // ------------------
@@ -47,8 +53,8 @@ resource containerApp 'Microsoft.App/containerApps@2023-05-01' = {
       }
       registries: [
         {
-          server: 'uniquewmataacrname.azurecr.io'
-          identity: '/subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourcegroups/wmataspokeaca/providers/Microsoft.ManagedIdentity/userAssignedIdentities/wmata-acr-identity'
+          server: registryServerName
+          identity: containerRegistryUserAssignedIdentityId
         }
       ] 
       secrets: []
@@ -61,7 +67,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-05-01' = {
           name: 'simple-hello-pythin-app'
           // Production readiness change
           // All workloads should be pulled from your private container registry and not public registries.
-          image: 'uniquewmataacrname.azurecr.io/pythonapp:latest'
+          image: containerImageName
           resources: {
             cpu: json('0.25')
             memory: '0.5Gi'
