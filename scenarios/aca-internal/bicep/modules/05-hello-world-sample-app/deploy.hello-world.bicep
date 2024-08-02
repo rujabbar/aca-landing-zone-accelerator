@@ -45,7 +45,12 @@ resource containerApp 'Microsoft.App/containerApps@2023-05-01' = {
         targetPort: 80
         transport: 'auto'
       }
-      registries: []
+      registries: [
+        {
+          server: 'uniquewmataacrname.azurecr.io'
+          identity: '/subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourcegroups/wmataspokeaca/providers/Microsoft.ManagedIdentity/userAssignedIdentities/wmata-acr-identity'
+        }
+      ] 
       secrets: []
     }
     environmentId: containerAppsEnvironmentId
@@ -53,7 +58,7 @@ resource containerApp 'Microsoft.App/containerApps@2023-05-01' = {
     template: {
       containers: [
         {
-          name: 'simple-hello'
+          name: 'simple-hello-pythin-app'
           // Production readiness change
           // All workloads should be pulled from your private container registry and not public registries.
           image: 'uniquewmataacrname.azurecr.io/pythonapp:latest'
