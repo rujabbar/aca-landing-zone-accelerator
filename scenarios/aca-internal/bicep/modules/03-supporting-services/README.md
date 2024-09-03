@@ -33,7 +33,7 @@ By default, they are deployed to the spoke resource group.
    echo LOG_ANALYTICS_WS_ID: $LOG_ANALYTICS_WS_ID
    ```
     
-   ```bash
+```bash
    # This takes about four minutes to run (if you add deployRedis=false).
 RESOURCENAME_RESOURCEGROUP_SPOKE=wmataspoke
 RESOURCEID_VNET_HUB=/subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourceGroups/wmata-aca-hub-rg/providers/Microsoft.Network/virtualNetworks/vnet-wmata-eus-hub
@@ -46,7 +46,7 @@ RESOURCEID_VNET_SPOKE=/subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resour
       -p 03-supporting-services/deploy.supporting-services.parameters.jsonc \
       -p hubVNetId=${RESOURCEID_VNET_HUB} spokeVNetId=${RESOURCEID_VNET_SPOKE} \
       -p logAnalyticsWorkspaceId=${LOG_ANALYTICS_WS_ID}
-   ```
+```
 
 ## Private DNS Zones
 
