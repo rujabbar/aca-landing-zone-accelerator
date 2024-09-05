@@ -81,7 +81,7 @@ module containerRegistry 'modules/container-registry.module.bicep' = {
 module keyVault 'modules/key-vault.bicep' = {
   name: 'keyVault-${uniqueString(resourceGroup().id)}'
   params: {
-    keyVaultName: 'dsskeyvaultdev'
+    keyVaultName: 'wmatadsskeyvaultdev'
     location: location
     tags: tags
     spokeVNetId: spokeVNetId
