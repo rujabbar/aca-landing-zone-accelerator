@@ -114,10 +114,14 @@ module containerRegistryNetwork '../../../../../shared/bicep/network/private-net
   }
 }
 
-resource containerRegistryUserAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
-  name: containerRegistryUserAssignedIdentityName
-  location: location
-  tags: tags
+// resource containerRegistryUserAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
+//   name: containerRegistryUserAssignedIdentityName
+//   location: location
+//   tags: tags
+// }
+resource containerRegistryUserAssignedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' existing = {
+  scope: resourceGroup(spokeSubscriptionId, spokeResourceGroupName)
+  name: 'dss-user-assigned-mi-dev'
 }
 
 

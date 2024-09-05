@@ -64,7 +64,7 @@ module naming '../../../../shared/bicep/naming/naming.module.bicep' = {
 module containerRegistry 'modules/container-registry.module.bicep' = {
   name: 'containerRegistry-${uniqueString(resourceGroup().id)}'
   params: {
-    containerRegistryName: naming.outputs.resourcesNames.containerRegistry
+    containerRegistryName: 'dsscontainerregistrydev'
     location: location
     tags: tags
     spokeVNetId: spokeVNetId
@@ -81,7 +81,7 @@ module containerRegistry 'modules/container-registry.module.bicep' = {
 module keyVault 'modules/key-vault.bicep' = {
   name: 'keyVault-${uniqueString(resourceGroup().id)}'
   params: {
-    keyVaultName: naming.outputs.resourcesNames.keyVault
+    keyVaultName: 'dsskeyvaultdev'
     location: location
     tags: tags
     spokeVNetId: spokeVNetId

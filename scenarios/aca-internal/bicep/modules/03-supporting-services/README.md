@@ -22,10 +22,10 @@ By default, they are deployed to the spoke resource group.
 1. Create the regional resources that the Azure Container Apps platform and its applications will be dependant on.
 
    ```bash
-   RESOURCEID_VNET_HUB=$(az deployment sub show -n acalza01-hub --query properties.outputs.hubVNetId.value -o tsv)
-   RESOURCENAME_RESOURCEGROUP_SPOKE=$(az deployment sub show -n acalza01-spokenetwork --query properties.outputs.spokeResourceGroupName.value -o tsv)
-   RESOURCEID_VNET_SPOKE=$(az deployment sub show -n acalza01-spokenetwork --query properties.outputs.spokeVNetId.value -o tsv)
-   LOG_ANALYTICS_WS_ID=$(az deployment sub show -n acalza01-spokenetwork --query properties.outputs.logAnalyticsWorkspaceId.value -o tsv)
+   RESOURCEID_VNET_HUB=/subscriptions/506efc48-f9da-4250-9195-014c00614790/resourceGroups/DSS_DEV_RG/providers/Microsoft.Network/virtualNetworks/WMATA_VN_DEV_DSS
+   RESOURCENAME_RESOURCEGROUP_SPOKE=DSS_DEV_RG
+   RESOURCEID_VNET_SPOKE=/subscriptions/506efc48-f9da-4250-9195-014c00614790/resourceGroups/DSS_DEV_RG/providers/Microsoft.Network/virtualNetworks/WMATA_VN_DEV_DSS
+   LOG_ANALYTICS_WS_ID=/subscriptions/506efc48-f9da-4250-9195-014c00614790/resourceGroups/DSS_DEV_RG/providers/Microsoft.OperationalInsights/workspaces/WMATA-DSS-DEV-LOG
 
    echo RESOURCEID_VNET_HUB: $RESOURCEID_VNET_HUB && \
    echo RESOURCENAME_RESOURCEGROUP_SPOKE: $RESOURCENAME_RESOURCEGROUP_SPOKE && \
@@ -35,10 +35,6 @@ By default, they are deployed to the spoke resource group.
     
 ```bash
    # This takes about four minutes to run (if you add deployRedis=false).
-RESOURCENAME_RESOURCEGROUP_SPOKE=wmataspoke
-RESOURCEID_VNET_HUB=/subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourceGroups/wmata-aca-hub-rg/providers/Microsoft.Network/virtualNetworks/vnet-wmata-eus-hub
-RESOURCEID_VNET_SPOKE=/subscriptions/82e70289-bf40-45f9-8476-eab93d2031f4/resourceGroups/wmata-aca-spoke-rg/providers/Microsoft.Network/virtualNetworks/vnet-aca-lza-wmata-eus-spoke
-
    az deployment group create \
       -n acalza01-dependencies \
       -g $RESOURCENAME_RESOURCEGROUP_SPOKE \
