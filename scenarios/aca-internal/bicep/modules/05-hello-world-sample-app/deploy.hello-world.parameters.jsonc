@@ -7,11 +7,11 @@
     },
     // Replace with the resource ID of the container apps environment 
     "containerRegistryUserAssignedIdentityId": {
-        "value": "<CONTAINER_REGISTRY_USER_ASSIGNED_IDENTITY_RESOURCE_ID>"
+        "value": "/subscriptions/506efc48-f9da-4250-9195-014c00614790/resourcegroups/DSS_DEV_RG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/dss-user-assigned-mi-dev"
     },
     // Replace with the resource ID of the container apps environment 
     "containerAppsEnvironmentId": {
-      "value": "<CONTAINER_APPS_ENVIRONMENT_RESOURCE_ID>"
+      "value": "/subscriptions/506efc48-f9da-4250-9195-014c00614790/resourceGroups/DSS_DEV_RG/providers/Microsoft.App/managedEnvironments/cae-lzaaca-dev-eus"
     }
   }
 }
