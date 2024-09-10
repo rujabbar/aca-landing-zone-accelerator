@@ -33,7 +33,7 @@ param registryServerName string = 'dsscontainerregistrydev'
 
 @description('digital-signage-content-broker Container App.')
 resource containerApp 'Microsoft.App/containerApps@2023-05-01' = {
-  name: digital-signage-content-broker
+  name: 'digital-signage-content-broker'
   location: location
   tags: tags
   identity: {
