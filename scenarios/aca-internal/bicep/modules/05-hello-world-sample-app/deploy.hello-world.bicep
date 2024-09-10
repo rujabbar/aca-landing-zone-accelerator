@@ -22,10 +22,10 @@ param containerRegistryUserAssignedIdentityId string
 param containerAppsEnvironmentId string
 
 @description('Name of the container image to be used for the Container App.')
-param containerImageName string
+param containerImageName string = 'dsscontainerregistrydev.azurecr.io/wmata/digital-signage-content-broker:1.0'
 
 @description('The name of the existing Azure Container Registry.')
-param registryServerName string
+param registryServerName string = 'dsscontainerregistrydev'
 
 // ------------------
 // RESOURCES
