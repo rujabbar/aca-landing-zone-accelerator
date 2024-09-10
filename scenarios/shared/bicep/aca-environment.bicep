@@ -15,7 +15,12 @@ param tags object = {}
 param zoneRedundant bool = false
 
 @description('Optional, the workload profiles required by the end user. The default is "Consumption", and is automatically added whether workload profiles are specified or not.')
-param workloadProfiles array = []
+param workloadProfiles array =  [ {
+     workloadProfileType: 'D4'  // available types can be found here: https://learn.microsoft.com/en-us/azure/container-apps/workload-profiles-overview#profile-types
+     name: 'wmata-wlp-d4'
+     minimumCount: 1
+     maximumCount: 3
+}]
 // Example of a workload profile below:
 // [ {
 //     workloadProfileType: 'D4'  // available types can be found here: https://learn.microsoft.com/en-us/azure/container-apps/workload-profiles-overview#profile-types
