@@ -22,7 +22,7 @@ param containerRegistryUserAssignedIdentityId string
 param containerAppsEnvironmentId string
 
 @description('The name of the existing Azure Container Registry.')
-param registryServerName string
+param registryServerName string = 'dsscontainerregistrydev'
 
 
 @description('The name of the existing image.')
