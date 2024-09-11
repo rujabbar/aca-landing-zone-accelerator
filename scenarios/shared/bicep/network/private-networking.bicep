@@ -39,7 +39,7 @@ module privateDnsZone 'private-dns-zone.bicep' = {
   name: 'privateDnsZoneDeployment-${uniqueString(azServiceId, privateEndpointSubResourceName)}'
   params: {
     name: azServicePrivateDnsZoneName
-    virtualNetworkLinks: virtualNetworkLinks
+    // virtualNetworkLinks: virtualNetworkLinks
   }
 }
 
