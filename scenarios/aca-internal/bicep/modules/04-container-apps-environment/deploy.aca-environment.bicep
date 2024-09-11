@@ -151,18 +151,18 @@ module containerAppsEnvironmentPrivateDnsZone '../../../../shared/bicep/network/
   name: 'containerAppsEnvironmentPrivateDnsZone-${uniqueString(resourceGroup().id)}'
   params: {
     name: containerAppsEnvironment.outputs.containerAppsEnvironmentDefaultDomain
-    virtualNetworkLinks: [
-      {
-        vnetName: spokeVNet.name  /* Link to spoke */
-        vnetId: spokeVNet.id
-        registrationEnabled: false
-      }
-      {
-        vnetName: vnetHub.name  /* Link to hub */
-        vnetId: vnetHub.id
-        registrationEnabled: false
-      }
-    ]
+    // virtualNetworkLinks: [
+    //   {
+    //     vnetName: spokeVNet.name  /* Link to spoke */
+    //     vnetId: spokeVNet.id
+    //     registrationEnabled: false
+    //   }
+    //   {
+    //     vnetName: vnetHub.name  /* Link to hub */
+    //     vnetId: vnetHub.id
+    //     registrationEnabled: false
+    //   }
+    // ]
     tags: tags
     aRecords: [
       {
