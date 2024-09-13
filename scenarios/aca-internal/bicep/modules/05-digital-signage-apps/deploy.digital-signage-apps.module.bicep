@@ -31,6 +31,8 @@ param image string
 @description('The name of the existing image.')
 param workloadProfleName  string = 'wmata-wlp-d4'
 
+param environmentVars array = []
+
 
 // ------------------
 // RESOURCES
@@ -67,6 +69,7 @@ resource frontendWebAppService 'Microsoft.App/containerApps@2023-05-01' = {
         {
           name: containerName
           image: image
+          env: environmentVars
           resources: {
             cpu: json('0.5')
             memory: '1Gi'

@@ -36,5 +36,9 @@ module digitalSignageStationsAheadAppModule 'deploy.digital-signage-apps.module.
     containerName: digitalSignageStationsAheadApp
     containerRegistryUserAssignedIdentityId: containerRegistryUserAssignedIdentityId
     image: digitalSignageStationsAheadAppImage
+    environmentVars: [{
+      name: 'ANC_FEED'
+      value: 'ws://10.10.85.5:8080/ws?useCompression=true'
+    }]
   }
 }
