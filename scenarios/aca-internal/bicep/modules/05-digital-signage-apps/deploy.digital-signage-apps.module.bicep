@@ -31,8 +31,11 @@ param image string
 @description('The name of the existing image.')
 param workloadProfleName  string = 'wmata-wlp-d4'
 
+@description('Array of EnvironmentVar objects')
 param environmentVars array = []
 
+@description('Ingress config')
+param ingress object
 
 // ------------------
 // RESOURCES
@@ -53,10 +56,7 @@ resource frontendWebAppService 'Microsoft.App/containerApps@2023-05-01' = {
     workloadProfileName: workloadProfleName
     configuration: {
       activeRevisionsMode: 'single'
-      ingress: {
-        external: false
-        targetPort: 3001
-      }
+      ingress: ingress
       registries: !empty(registryServerName) ? [
         {
           server: '${registryServerName}.azurecr.io'

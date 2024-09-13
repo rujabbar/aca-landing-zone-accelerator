@@ -19,6 +19,10 @@ module digitalSignageContentBrokerModule 'deploy.digital-signage-apps.module.bic
     containerRegistryUserAssignedIdentityId: containerRegistryUserAssignedIdentityId
     image: digitalSignageContentBrokerImage
     tags: tags
+    ingress: {
+      external: false
+      targetPort: 3001
+    }
   }
 }
 
@@ -30,6 +34,10 @@ module digitalSignageKioskAppModule 'deploy.digital-signage-apps.module.bicep' =
     containerRegistryUserAssignedIdentityId: containerRegistryUserAssignedIdentityId
     image: digitalSignageKioskAppImage
     tags: tags
+    ingress: {
+      external: false
+      targetPort: 80
+    }
   }
 }
 
@@ -45,5 +53,9 @@ module digitalSignageStationsAheadAppModule 'deploy.digital-signage-apps.module.
       name: 'ANC_FEED'
       value: 'ws://10.10.85.5:8080/ws?useCompression=true'
     }]
+    ingress: {
+      external: false
+      targetPort: 80
+    }
   }
 }
