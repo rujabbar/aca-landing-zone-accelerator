@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "tags": {
-        "value": {}
+        "value": {"Department":"Customer Experience", "Contractor": "Radial Theory", "Project": "Digital Signage Services"}
     },
     // Replace with the resource ID of the container apps environment 
     "containerRegistryUserAssignedIdentityId": {
