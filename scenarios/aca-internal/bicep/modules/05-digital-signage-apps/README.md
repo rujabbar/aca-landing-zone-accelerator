@@ -24,9 +24,9 @@ Public container registries are subject to faults such as outages or request thr
 1. Deploy the Hello World container app.
 
    ```bash
-   RESOURCENAME_RESOURCEGROUP_SPOKE=$(az deployment sub show -n acalza01-spokenetwork --query properties.outputs.spokeResourceGroupName.value -o tsv)
-   RESOURCEID_IDENTITY_ACR=$(az deployment group show -n acalza01-dependencies -g $RESOURCENAME_RESOURCEGROUP_SPOKE --query properties.outputs.containerRegistryUserAssignedIdentityId.value -o tsv)
-   RESOURCEID_ACA=$(az deployment group show -n acalza01-appplat -g $RESOURCENAME_RESOURCEGROUP_SPOKE --query properties.outputs.containerAppsEnvironmentId.value -o tsv)
+   RESOURCENAME_RESOURCEGROUP_SPOKE=DSS_DEV_RG
+   RESOURCEID_IDENTITY_ACR=/subscriptions/506efc48-f9da-4250-9195-014c00614790/resourcegroups/DSS_DEV_RG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/dss-user-assigned-mi-dev
+   RESOURCEID_ACA=/subscriptions/506efc48-f9da-4250-9195-014c00614790/resourceGroups/DSS_DEV_RG/providers/Microsoft.App/managedEnvironments/cae-lzaaca-dev-eus
    echo RESOURCENAME_RESOURCEGROUP_SPOKE: $RESOURCENAME_RESOURCEGROUP_SPOKE && \
    echo RESOURCEID_IDENTITY_ACR: $RESOURCEID_IDENTITY_ACR && \
    echo RESOURCEID_ACA: $RESOURCEID_ACA
@@ -39,10 +39,10 @@ Public container registries are subject to faults such as outages or request thr
    ```bash
    # [This takes about one minute to run.] 
    az deployment group create \
-      -n acalza01-helloworld \
+      -n digital-signage-apps \
       -g $RESOURCENAME_RESOURCEGROUP_SPOKE \
-      -f 05-hello-world-sample-app/deploy.hello-world.bicep \
-      -p 05-hello-world-sample-app/deploy.hello-world.parameters.jsonc \
+      -f 05-digital-signage-apps/digital-signage-apps.bicep \
+      -p 05-digital-signage-apps/digital-signage-apps.parameters.jsonc \
       -p containerRegistryUserAssignedIdentityId=${RESOURCEID_IDENTITY_ACR} containerAppsEnvironmentId=${RESOURCEID_ACA}
    ```
 
