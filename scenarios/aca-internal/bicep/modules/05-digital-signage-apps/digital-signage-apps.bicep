@@ -9,11 +9,14 @@ param digitalSignageKioskAppImage string = 'cracalza2fx7otesteus.azurecr.io/wmat
 param digitalSignageStationsAheadApp string = 'digital-signage-stations-ahead'
 param digitalSignageStationsAheadAppImage string = 'cracalza2fx7otesteus.azurecr.io/wmata/digital-signage-stations-ahead-app:1.0'
 
+param registryServerName string
+
 param tags object
 
 module digitalSignageContentBrokerModule 'deploy.digital-signage-apps.module.bicep' = {
   name: digitalSignageContentBroker
   params: {
+    registryServerName: registryServerName
     containerAppsEnvironmentId: containerAppsEnvironmentId
     containerName: digitalSignageContentBroker
     containerRegistryUserAssignedIdentityId: containerRegistryUserAssignedIdentityId
@@ -29,6 +32,7 @@ module digitalSignageContentBrokerModule 'deploy.digital-signage-apps.module.bic
 module digitalSignageKioskAppModule 'deploy.digital-signage-apps.module.bicep' = {
   name: digitalSignageKioskApp
   params: {
+    registryServerName: registryServerName
     containerAppsEnvironmentId: containerAppsEnvironmentId
     containerName: digitalSignageKioskApp
     containerRegistryUserAssignedIdentityId: containerRegistryUserAssignedIdentityId
@@ -44,6 +48,7 @@ module digitalSignageKioskAppModule 'deploy.digital-signage-apps.module.bicep' =
 module digitalSignageStationsAheadAppModule 'deploy.digital-signage-apps.module.bicep' = {
   name: digitalSignageStationsAheadApp
   params: {
+    registryServerName: registryServerName
     containerAppsEnvironmentId: containerAppsEnvironmentId
     containerName: digitalSignageStationsAheadApp
     containerRegistryUserAssignedIdentityId: containerRegistryUserAssignedIdentityId
@@ -59,3 +64,7 @@ module digitalSignageStationsAheadAppModule 'deploy.digital-signage-apps.module.
     }
   }
 }
+// az deployment group create \
+//   --resource-group rg-aca-lza-spoke-test-eus \
+//   --template-file digital-signage-apps.bicep \
+//   --parameters @digital-signage-apps.parameters.jsonc

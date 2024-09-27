@@ -12,6 +12,10 @@
     // Replace with the resource ID of the container apps environment 
     "containerAppsEnvironmentId": {
       "value": "/subscriptions/f37c6be5-84d0-4994-b205-fc8ffb9b5e7e/resourceGroups/rg-aca-lza-spoke-test-eus/providers/Microsoft.App/managedEnvironments/cae-aca-lza-test-eus"
+    },
+    // Replace with the resource ID of the container apps environment 
+    "registryServerName": {
+      "value": "cracalza2fx7otesteus"
     }
   }
 }
