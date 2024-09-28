@@ -7,15 +7,15 @@
     },
     // Replace with the resource ID of the container apps environment 
     "containerRegistryUserAssignedIdentityId": {
-        "value": "/subscriptions/f37c6be5-84d0-4994-b205-fc8ffb9b5e7e/resourceGroups/rg-aca-lza-spoke-test-eus/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-cracalza2fx7otesteus-AcrPull"
+        "value": "/subscriptions/f37c6be5-84d0-4994-b205-fc8ffb9b5e7e/resourceGroups/aca-testing/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-cracalzaawi36ptestsseus-AcrPull"
     },
     // Replace with the resource ID of the container apps environment 
     "containerAppsEnvironmentId": {
-      "value": "/subscriptions/f37c6be5-84d0-4994-b205-fc8ffb9b5e7e/resourceGroups/rg-aca-lza-spoke-test-eus/providers/Microsoft.App/managedEnvironments/cae-aca-lza-test-eus"
+      "value": "/subscriptions/f37c6be5-84d0-4994-b205-fc8ffb9b5e7e/resourceGroups/aca-testing/providers/Microsoft.App/managedEnvironments/cae-aca-lzaa-testss-eus"
     },
     // Replace with the resource ID of the container apps environment 
     "registryServerName": {
-      "value": "cracalza2fx7otesteus"
+      "value": "cracalzaawi36ptestsseus"
     }
   }
 }
